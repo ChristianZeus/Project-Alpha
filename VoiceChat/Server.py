@@ -4,9 +4,7 @@ import pickle
 import cv2 as cv
 import struct
 import pyaudio
-from multiprocessing import Queue
-from concurrent.futures import ThreadPoolExecutor
-from time import sleep
+
 class Server():
     def __init__(self,ip, port):
         self.FORMAT = "utf-8"
@@ -21,8 +19,6 @@ class Server():
         self.ip = ip
         self.port = port
         self.ip_port = (ip, port)
-
-        self.VOICE_QUEUE = Queue(100)
         # PyAudio for voice data
         self.p = pyaudio.PyAudio()
         self.input_audio = self.p.open(input=True,
